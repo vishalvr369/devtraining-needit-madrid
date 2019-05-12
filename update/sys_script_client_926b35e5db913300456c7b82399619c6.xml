@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>        Description: Only display What needed choices that match the Request type value.&#13;
+</description>
+        <field>u_request_type</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>NeedIt Request Type Options</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (newValue === '') {
+      return;
+   }
+	   
+	   var whatNeeded = g_form.getValue('u_what_needed');
+   		g_form.clearOptions('u_what_needed');
+	   
+	   if(newValue=='hr'){
+		   g_form.addOption('u_what_needed','hr11','Human Resources 11');
+			g_form.addOption('u_what_needed','hr12','Human Resources 12');
+			g_form.addOption('u_what_needed','other','Other');
+	   }
+
+   	if(newValue == 'facilities'){
+			g_form.addOption('u_what_needed','facilities11','Facilities 11');
+			g_form.addOption('u_what_needed','facilities12','Facilities 12');
+			g_form.addOption('u_what_needed','other1','Other1');
+		}
+		// If the the value of the Request type field is legal, add
+		// two legal choices and other to the What needed field
+		// choice list
+		if(newValue == 'legal'){
+			g_form.addOption('u_what_needed','legal11','Legal 11');
+			g_form.addOption('u_what_needed','legal12','Legal 12');
+			g_form.addOption('u_what_needed','other1','Other1');
+		}
+   //Type appropriate comment here, and begin script below
+   if(isLoading && !g_form.isNewRecord()){
+			g_form.setValue('u_what_needed', whatNeeded);
+		}
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-05-08 19:01:57</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>926b35e5db913300456c7b82399619c6</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>NeedIt Request Type Options</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_client_926b35e5db913300456c7b82399619c6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-05-09 18:49:38</sys_updated_on>
+        <table>x_58872_needit_needit</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
